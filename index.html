@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -11,30 +10,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #FAF7F1;
-    --paper: #F3EEE4;
-    --olive: #4A5D3A;
-    --olive-dark: #313F26;
-    --rust: #B0603C;
-    --ink: #2A2622;
-    --ink-soft: #6B6358;
-    --line: #DDD5C5;
+    --bg: #141210;
+    --surface: #1E1B18;
+    --surface2: #262219;
+    --olive: #7AAD5A;
+    --olive-dark: #5C8A3E;
+    --rust: #D4784A;
+    --ink: #EDE8DF;
+    --ink-soft: #8C8479;
+    --line: #2E2A25;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: var(--cream);
+    background: var(--bg);
     color: var(--ink);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
   }
 
   .display { font-family: 'Fraunces', serif; }
-
   a { color: inherit; text-decoration: none; }
 
-  /* ===== Header ===== */
   header {
     padding: 2rem 1.5rem 1.5rem;
     border-bottom: 1px solid var(--line);
@@ -61,9 +59,7 @@
   nav { display: flex; gap: 1.75rem; font-size: 0.92rem; color: var(--ink-soft); }
   nav a:hover { color: var(--ink); }
 
-  .hero {
-    text-align: left;
-  }
+  .hero { text-align: left; }
 
   .hero-eyebrow {
     font-size: 0.82rem;
@@ -97,7 +93,6 @@
     max-width: 46ch;
   }
 
-  /* ===== Notebook strip ===== */
   .notebook {
     max-width: 760px;
     margin: 2rem auto 0;
@@ -105,7 +100,7 @@
   }
 
   .notebook-strip {
-    background: var(--paper);
+    background: var(--surface);
     border-radius: 4px;
     padding: 1rem 1.25rem;
     display: flex;
@@ -123,7 +118,34 @@
     font-size: 0.97rem;
   }
 
-  /* ===== Recipe grid ===== */
+  /* Filtreler */
+  .filters {
+    max-width: 760px;
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--olive);
+    border-color: var(--olive);
+    color: var(--bg);
+  }
+
   main {
     max-width: 760px;
     margin: 0 auto;
@@ -145,20 +167,11 @@
     font-size: 1.35rem;
   }
 
-  .section-head span {
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-  }
+  .section-head span { font-size: 0.85rem; color: var(--ink-soft); }
 
-  .recipe-list {
-    display: flex;
-    flex-direction: column;
-  }
+  .recipe-list { display: flex; flex-direction: column; }
 
-  .recipe-item {
-    border-bottom: 1px solid var(--line);
-  }
-
+  .recipe-item { border-bottom: 1px solid var(--line); }
   .recipe-item:last-child { border-bottom: none; }
 
   .recipe-row {
@@ -174,9 +187,10 @@
     text-align: left;
     font-family: 'Inter', sans-serif;
     color: inherit;
+    transition: opacity 0.15s;
   }
 
-  .recipe-row:hover .recipe-info h3 { color: var(--olive-dark); }
+  .recipe-row:hover { opacity: 0.75; }
 
   .recipe-detail {
     max-height: 0;
@@ -186,9 +200,7 @@
 
   .recipe-detail.open { max-height: 3000px; }
 
-  .recipe-detail-inner {
-    padding: 0 0 2.25rem;
-  }
+  .recipe-detail-inner { padding: 0 0 2.25rem; }
 
   .recipe-lede {
     color: var(--ink-soft);
@@ -242,12 +254,7 @@
   }
 
   .ingredients li:last-child { border-bottom: none; }
-
-  .ingredients li span:last-child {
-    color: var(--ink-soft);
-    white-space: nowrap;
-    text-align: right;
-  }
+  .ingredients li span:last-child { color: var(--ink-soft); white-space: nowrap; text-align: right; }
 
   .step {
     display: grid;
@@ -263,7 +270,7 @@
     height: 26px;
     border-radius: 50%;
     background: var(--olive);
-    color: var(--cream);
+    color: var(--bg);
     font-family: 'Fraunces', serif;
     font-weight: 500;
     font-size: 0.8rem;
@@ -278,7 +285,7 @@
 
   .recipe-note {
     margin-top: 1.75rem;
-    background: var(--paper);
+    background: var(--surface2);
     border-radius: 4px;
     padding: 1rem 1.15rem;
     border-left: 3px solid var(--rust);
@@ -295,21 +302,11 @@
     font-size: 0.92rem;
   }
 
-  .chevron {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    transition: transform 0.25s ease;
-    color: var(--ink-soft);
-  }
-
-  .recipe-item.open .chevron { transform: rotate(180deg); }
-
   .thumb {
     width: 88px;
     height: 88px;
     border-radius: 6px;
-    background: var(--paper);
+    background: var(--surface);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -324,10 +321,7 @@
     margin-bottom: 0.3rem;
   }
 
-  .recipe-info p {
-    font-size: 0.88rem;
-    color: var(--ink-soft);
-  }
+  .recipe-info p { font-size: 0.88rem; color: var(--ink-soft); }
 
   .meta {
     text-align: right;
@@ -344,12 +338,21 @@
     margin-top: 0.4rem;
     font-size: 0.74rem;
     color: var(--olive);
-    background: rgba(74, 93, 58, 0.08);
+    background: rgba(122, 173, 90, 0.1);
     padding: 0.18rem 0.55rem;
     border-radius: 100px;
   }
 
-  /* ===== Quote / signature ===== */
+  .chevron {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--ink-soft);
+  }
+
+  .recipe-item.open .chevron { transform: rotate(180deg); }
+
   .signature {
     max-width: 760px;
     margin: 0 auto;
@@ -362,7 +365,7 @@
     font-size: 1.3rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--olive-dark);
+    color: var(--olive);
     border-top: 1px solid var(--line);
     padding-top: 1.75rem;
     max-width: 50ch;
@@ -377,7 +380,6 @@
     margin-top: 0.9rem;
   }
 
-  /* ===== Footer ===== */
   footer {
     border-top: 1px solid var(--line);
     padding: 1.75rem 1.5rem;
@@ -388,6 +390,8 @@
     font-size: 0.82rem;
     color: var(--ink-soft);
   }
+
+  .hidden { display: none; }
 
   @media (max-width: 540px) {
     nav { display: none; }
@@ -404,12 +408,11 @@
   <div class="nav-row">
     <div class="brand">ocak <span>başı</span></div>
     <nav>
-      <a href="index.html">tarifler</a>
+      <a href="#">tarifler</a>
       <a href="#">mevsiminde</a>
       <a href="#">hakkımda</a>
     </nav>
   </div>
-
   <div class="hero">
     <p class="hero-eyebrow">yemek günlüğü</p>
     <h1 class="display">Bugün ne pişirsem, diye başlayan her şey buraya yazılıyor.</h1>
@@ -423,262 +426,595 @@
   </div>
 </div>
 
+<div class="filters">
+  <button class="filter-btn active" data-filter="hepsi">hepsi</button>
+  <button class="filter-btn" data-filter="mevsimlik">mevsimlik</button>
+  <button class="filter-btn" data-filter="et">et yemekleri</button>
+  <button class="filter-btn" data-filter="tatli">tatlılar</button>
+  <button class="filter-btn" data-filter="kahvalti">kahvaltılıklar</button>
+  <button class="filter-btn" data-filter="corba">çorbalar</button>
+  <button class="filter-btn" data-filter="zeytinyagli">zeytinyağlılar</button>
+  <button class="filter-btn" data-filter="meze">mezeler</button>
+  <button class="filter-btn" data-filter="hamur">hamur işleri</button>
+</div>
+
 <main>
   <div class="section-head">
-    <h2>son eklenenler</h2>
-    <span>8 tarif</span>
+    <h2>tüm tarifler</h2>
+    <span id="tarif-sayisi">25 tarif</span>
   </div>
 
   <div class="recipe-list">
 
-    <div class="recipe-item">
-      <button class="recipe-row" data-target="d-kabak">
+    <!-- 1 -->
+    <div class="recipe-item" data-category="mevsimlik">
+      <button class="recipe-row" data-target="d1">
         <div class="thumb">🍅</div>
-        <div class="recipe-info">
-          <h3>Fırında domates soslu kabak</h3>
-          <p>30 dakikada, tek tencerede</p>
-          <span class="tag">mevsimlik</span>
-        </div>
-        <div class="meta">
-          25 dk · 3 kişilik
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
+        <div class="recipe-info"><h3>Fırında domates soslu kabak</h3><p>30 dakikada, tek tencerede</p><span class="tag">mevsimlik</span></div>
+        <div class="meta">25 dk · 3 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
       </button>
-      <div class="recipe-detail" id="d-kabak">
-        <div class="recipe-detail-inner">
-          <p class="recipe-lede">Yazın sonunda kabaklar bollaştığında yaptığım, tek tencerede pişen, ekmeğe banılası bir yemek. Domatesin asitliği kabağın hafifliğini dengeliyor.</p>
-          <div class="recipe-meta-row">
-            <div class="meta-item"><p>hazırlık</p><p>10 dk</p></div>
-            <div class="meta-item"><p>pişirme</p><p>25 dk</p></div>
-            <div class="meta-item"><p>porsiyon</p><p>3 kişilik</p></div>
-          </div>
-          <div class="detail-cols">
-            <div class="ingredients">
-              <h4 class="detail-title">malzemeler</h4>
-              <ul>
-                <li><span>kabak</span><span>3 orta boy</span></li>
-                <li><span>domates</span><span>4 adet</span></li>
-                <li><span>kuru soğan</span><span>1 adet</span></li>
-                <li><span>sarımsak</span><span>2 diş</span></li>
-                <li><span>zeytinyağı</span><span>4 yemek kaşığı</span></li>
-                <li><span>domates salçası</span><span>1 tatlı kaşığı</span></li>
-                <li><span>pul biber</span><span>1 çay kaşığı</span></li>
-                <li><span>kekik</span><span>1 çay kaşığı</span></li>
-                <li><span>tuz</span><span>damak tadına göre</span></li>
-                <li><span>karabiber</span><span>damak tadına göre</span></li>
-              </ul>
-            </div>
-            <div class="steps">
-              <h4 class="detail-title">yapılışı</h4>
-              <div class="step"><div class="step-num">1</div><div class="step-text"><p>Kabakları yıkayıp yaklaşık 1 cm kalınlığında, uzunlamasına dilimleyin. Fazla suyunu almak için üzerlerine biraz <strong>tuz</strong> serpip 10 dakika dinlendirin, sonra kağıt havluyla kurulayın.</p></div></div>
-              <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğanı ince, sarımsağı ince kıyın. Domatesleri rendeleyin ya da küçük küpler halinde doğrayın.</p></div></div>
-              <div class="step"><div class="step-num">3</div><div class="step-text"><p>Geniş bir tavada <strong>zeytinyağının</strong> yarısıyla kabak dilimlerini iki tarafı hafif kızarana kadar kavurun, sonra kenara alın.</p></div></div>
-              <div class="step"><div class="step-num">4</div><div class="step-text"><p>Aynı tavada kalan zeytinyağıyla soğanı şeffaflaşana kadar kavurun, sarımsağı ekleyip 1 dakika daha kavurun. <strong>Salçayı</strong> ekleyip bir dakika kavurduktan sonra rendelenmiş domatesi, pul biberi ve kekiği ekleyin.</p></div></div>
-              <div class="step"><div class="step-num">5</div><div class="step-text"><p>Sos kaynamaya başlayınca tuz ve karabiberle tatlandırın, 8-10 dakika kısık ateşte koyulaşana kadar pişirin.</p></div></div>
-              <div class="step"><div class="step-num">6</div><div class="step-text"><p>Fırın tepsisine kavrulmuş kabakları dizin, üzerine domates sosunu gezdirin. <strong>200°C</strong>'ye ısıtılmış fırında 12-15 dakika pişirin, üzeri hafif kızarana kadar.</p></div></div>
-              <div class="step"><div class="step-num">7</div><div class="step-text"><p>Fırından çıkardıktan sonra 5 dakika dinlendirin, ılık servis edin. İsterseniz üzerine birkaç damla zeytinyağı daha gezdirin.</p></div></div>
-              <div class="recipe-note"><strong>not</strong>Kabakları önceden hafif kavurmak suyunu attırıyor, fırında lapa olmasını engelliyor. Acele ederseniz bu adımı atlayabilirsiniz ama sonuç daha sulu olur.</div>
-            </div>
+      <div class="recipe-detail" id="d1"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Yazın sonunda kabaklar bollaştığında yaptığım, tek tencerede pişen, ekmeğe banılası bir yemek.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>porsiyon</p><p>3 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>kabak</span><span>3 orta boy</span></li><li><span>domates</span><span>4 adet</span></li><li><span>kuru soğan</span><span>1 adet</span></li><li><span>sarımsak</span><span>2 diş</span></li><li><span>zeytinyağı</span><span>4 yemek kaşığı</span></li><li><span>domates salçası</span><span>1 tatlı kaşığı</span></li><li><span>pul biber</span><span>1 çay kaşığı</span></li><li><span>kekik</span><span>1 çay kaşığı</span></li><li><span>tuz</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Kabakları 1 cm kalınlığında dilimleyin, tuzlayıp 10 dakika dinlendirin, kurulayın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğan ve sarımsağı ince kıyın, domatesleri rendeleyin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Zeytinyağında kabakları her iki tarafı kızarana kadar kavurun, kenara alın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Aynı tavada soğan, sarımsak, salça, domates, pul biber ve kekiği kavurun, 8-10 dakika koyulaştırın.</p></div></div>
+            <div class="step"><div class="step-num">5</div><div class="step-text"><p>Kabakları tepsiye dizin, üzerine sos dökün, <strong>200°C</strong>'de 12-15 dakika pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Kabakları önceden kavurmak suyunu attırır, fırında lapa olmaz.</div>
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
 
-    <div class="recipe-item">
-      <button class="recipe-row" data-target="d-fasulye">
+    <!-- 2 -->
+    <div class="recipe-item" data-category="zeytinyagli">
+      <button class="recipe-row" data-target="d2">
         <div class="thumb">🍋</div>
-        <div class="recipe-info">
-          <h3>Limonlu taze fasulye zeytinyağlı</h3>
-          <p>Soğuk da sıcak da güzel</p>
-          <span class="tag">zeytinyağlı</span>
-        </div>
-        <div class="meta">
-          40 dk · 4 kişilik
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
+        <div class="recipe-info"><h3>Limonlu taze fasulye zeytinyağlı</h3><p>Soğuk da sıcak da güzel</p><span class="tag">zeytinyağlı</span></div>
+        <div class="meta">40 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
       </button>
-      <div class="recipe-detail" id="d-fasulye">
-        <div class="recipe-detail-inner">
-          <p class="recipe-lede">Klasik zeytinyağlılardan, ama limonla biraz farklı bir yöne çekiliyor. Soğuduğunda da lezzeti bozulmuyor, hatta dolapta bir gece bekleyince daha da iyi oluyor.</p>
-          <div class="recipe-meta-row">
-            <div class="meta-item"><p>hazırlık</p><p>15 dk</p></div>
-            <div class="meta-item"><p>pişirme</p><p>25 dk</p></div>
-            <div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div>
-          </div>
-          <div class="detail-cols">
-            <div class="ingredients">
-              <h4 class="detail-title">malzemeler</h4>
-              <ul>
-                <li><span>taze fasulye</span><span>600 g</span></li>
-                <li><span>kuru soğan</span><span>1 adet</span></li>
-                <li><span>havuç</span><span>1 adet</span></li>
-                <li><span>domates</span><span>2 adet</span></li>
-                <li><span>zeytinyağı</span><span>6 yemek kaşığı</span></li>
-                <li><span>limon</span><span>1 adet</span></li>
-                <li><span>şeker</span><span>1 tatlı kaşığı</span></li>
-                <li><span>tuz</span><span>damak tadına göre</span></li>
-                <li><span>sıcak su</span><span>1 su bardağı</span></li>
-              </ul>
-            </div>
-            <div class="steps">
-              <h4 class="detail-title">yapılışı</h4>
-              <div class="step"><div class="step-num">1</div><div class="step-text"><p>Fasulyelerin iplerini ayıklayın, ortadan ikiye ya da uzunlamasına ince şeritler halinde bölün. Yıkayıp süzgeçte bekletin.</p></div></div>
-              <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğanı yarım ay, havucu ince yuvarlak dilimler halinde doğrayın. Domatesleri küçük küpler halinde kesin.</p></div></div>
-              <div class="step"><div class="step-num">3</div><div class="step-text"><p>Geniş bir tencerede <strong>zeytinyağını</strong> ısıtın, soğan ve havucu 4-5 dakika kavurun, soğan hafif şeffaflaşsın.</p></div></div>
-              <div class="step"><div class="step-num">4</div><div class="step-text"><p>Domatesleri ekleyip 2-3 dakika daha kavurun, ardından fasulyeleri ilave edin ve hafifçe karıştırın.</p></div></div>
-              <div class="step"><div class="step-num">5</div><div class="step-text"><p><strong>Sıcak suyu</strong>, tuzu ve şekeri ekleyin, kapağını kapatıp kısık ateşte 20-25 dakika, fasulyeler yumuşayana kadar pişirin. Ara sıra kontrol edin, su azalırsa biraz daha ekleyin.</p></div></div>
-              <div class="step"><div class="step-num">6</div><div class="step-text"><p>Ocaktan aldıktan sonra üzerine <strong>limon suyu</strong> sıkın, oda sıcaklığına gelene kadar bekletip öyle servis edin.</p></div></div>
-              <div class="recipe-note"><strong>not</strong>Zeytinyağlılar sıcak servis edilmez, oda sıcaklığında ya da soğukta en lezzetli halini alır. Bir gece dolapta bekleterek de servis edebilirsiniz, tatlar iyice oturur.</div>
-            </div>
+      <div class="recipe-detail" id="d2"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Klasik zeytinyağlılardan, ama limonla farklı bir yöne çekiliyor. Dolapta bir gece bekleyince daha da iyi oluyor.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>15 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>taze fasulye</span><span>600 g</span></li><li><span>kuru soğan</span><span>1 adet</span></li><li><span>havuç</span><span>1 adet</span></li><li><span>domates</span><span>2 adet</span></li><li><span>zeytinyağı</span><span>6 yemek kaşığı</span></li><li><span>limon</span><span>1 adet</span></li><li><span>şeker</span><span>1 tatlı kaşığı</span></li><li><span>tuz</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Fasulyelerin iplerini ayıklayın, ikiye bölün, yıkayın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğanı yarım ay, havucu yuvarlak dilimler halinde doğrayın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Zeytinyağında soğan ve havucu kavurun, domates ve fasulyeleri ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Sıcak su, tuz ve şeker ekleyin, 20-25 dakika kısık ateşte pişirin.</p></div></div>
+            <div class="step"><div class="step-num">5</div><div class="step-text"><p>Ocaktan alınca limon sıkın, oda sıcaklığında servis edin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Zeytinyağlılar soğukta daha lezzetli olur.</div>
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
 
-    <div class="recipe-item">
-      <button class="recipe-row" data-target="d-ekmek">
+    <!-- 3 -->
+    <div class="recipe-item" data-category="hamur">
+      <button class="recipe-row" data-target="d3">
         <div class="thumb">🍞</div>
-        <div class="recipe-info">
-          <h3>Mayasız kâhküllü ekmek</h3>
-          <p>Yoğurma yok, sadece bekleme</p>
-          <span class="tag">hamur işi</span>
-        </div>
-        <div class="meta">
-          12 sa · 1 somun
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
+        <div class="recipe-info"><h3>Mayasız kâhküllü ekmek</h3><p>Yoğurma yok, sadece bekleme</p><span class="tag">hamur işi</span></div>
+        <div class="meta">12 sa · 1 somun <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
       </button>
-      <div class="recipe-detail" id="d-ekmek">
-        <div class="recipe-detail-inner">
-          <p class="recipe-lede">Yoğurma yok, yalnızca bekleme var. Bir gece önceden hazırlayıp sabah fırına verdiğim, dışı çıtır içi gözenekli bir ekmek. Maya yerine zaman işi görüyor.</p>
-          <div class="recipe-meta-row">
-            <div class="meta-item"><p>hazırlık</p><p>15 dk</p></div>
-            <div class="meta-item"><p>bekleme</p><p>12 sa</p></div>
-            <div class="meta-item"><p>porsiyon</p><p>1 somun</p></div>
-          </div>
-          <div class="detail-cols">
-            <div class="ingredients">
-              <h4 class="detail-title">malzemeler</h4>
-              <ul>
-                <li><span>un</span><span>3.5 su bardağı</span></li>
-                <li><span>kuru maya</span><span>¼ çay kaşığı</span></li>
-                <li><span>tuz</span><span>1.5 çay kaşığı</span></li>
-                <li><span>ılık su</span><span>1.5 su bardağı</span></li>
-                <li><span>çörek otu</span><span>1 yemek kaşığı</span></li>
-                <li><span>susam</span><span>1 yemek kaşığı</span></li>
-              </ul>
-            </div>
-            <div class="steps">
-              <h4 class="detail-title">yapılışı</h4>
-              <div class="step"><div class="step-num">1</div><div class="step-text"><p>Geniş bir kapta <strong>unu, mayayı ve tuzu</strong> karıştırın. Ilık suyu azar azar ekleyip kaşıkla karıştırın, yoğurmaya gerek yok — yapışkan, pürüzsüz olmayan bir hamur yeterli.</p></div></div>
-              <div class="step"><div class="step-num">2</div><div class="step-text"><p>Kabı streç filmle örtüp oda sıcaklığında <strong>12-18 saat</strong> dinlendirin. Hamurun yüzeyinde kabarcıklar oluşması ve hacminin iki katına çıkması gerekiyor.</p></div></div>
-              <div class="step"><div class="step-num">3</div><div class="step-text"><p>Unlanmış bir tezgaha hamuru dökün, birkaç kez nazikçe katlayın, top haline getirin. Yapışkanlık devam ediyorsa ellerinizi hafifçe unlayın.</p></div></div>
-              <div class="step"><div class="step-num">4</div><div class="step-text"><p>Unlu bir bez üzerine alıp üzerine <strong>çörek otu ve susam</strong> serpin, bezle örtüp 1-2 saat daha mayalandırın.</p></div></div>
-              <div class="step"><div class="step-num">5</div><div class="step-text"><p>Fırını içinde döküm bir tencere ya da güveçle birlikte <strong>240°C</strong>'ye ısıtın. Tencere ısınınca hamuru dikkatlice içine alın, kapağını kapatıp 25 dakika pişirin.</p></div></div>
-              <div class="step"><div class="step-num">6</div><div class="step-text"><p>Kapağı açıp üzeri altın rengi olana kadar <strong>10-15 dakika</strong> daha pişirin. Fırından çıkardıktan sonra ızgara üzerinde tamamen soğumadan kesmeyin.</p></div></div>
-              <div class="recipe-note"><strong>not</strong>Maya miktarı çok az olduğu için uzun bekleme şart — kısayol yok. Sıcak günlerde mayalanma süresi kısalabilir, hamurun hacmini kontrol ederek karar verin.</div>
-            </div>
+      <div class="recipe-detail" id="d3"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Bir gece önceden hazırlayıp sabah fırına verdiğim, dışı çıtır içi gözenekli ekmek.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>15 dk</p></div><div class="meta-item"><p>bekleme</p><p>12 sa</p></div><div class="meta-item"><p>porsiyon</p><p>1 somun</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>un</span><span>3.5 su bardağı</span></li><li><span>kuru maya</span><span>¼ çay kaşığı</span></li><li><span>tuz</span><span>1.5 çay kaşığı</span></li><li><span>ılık su</span><span>1.5 su bardağı</span></li><li><span>çörek otu</span><span>1 yemek kaşığı</span></li><li><span>susam</span><span>1 yemek kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Un, maya ve tuzu karıştırın, ılık suyu ekleyip kaşıkla karıştırın. Yoğurmaya gerek yok.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Streç filmle örtüp oda sıcaklığında <strong>12-18 saat</strong> dinlendirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Unlanmış tezgaha dökün, birkaç kez katlayın, top yapın. Çörek otu ve susam serpin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Döküm tencereyle birlikte <strong>240°C</strong>'ye ısıtın, hamuru içine koyun, kapalı 25 dk, açık 15 dk pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Soğumadan kesmeyin, içi hâlâ pişmeye devam ediyor.</div>
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
 
-    <div class="recipe-item">
-      <button class="recipe-row" data-target="d-corba">
+    <!-- 4 -->
+    <div class="recipe-item" data-category="corba">
+      <button class="recipe-row" data-target="d4">
         <div class="thumb">🥣</div>
-        <div class="recipe-info">
-          <h3>Yayla çorbası, anne usulü</h3>
-          <p>Soğuk akşamların klasiği</p>
-          <span class="tag">çorba</span>
-        </div>
-        <div class="meta">
-          35 dk · 4 kişilik
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
+        <div class="recipe-info"><h3>Yayla çorbası, anne usulü</h3><p>Soğuk akşamların klasiği</p><span class="tag">çorba</span></div>
+        <div class="meta">35 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
       </button>
-      <div class="recipe-detail" id="d-corba">
-        <div class="recipe-detail-inner">
-          <p class="recipe-lede">Yoğurdun kesilmemesi için sabırla karıştırılan, naneli tereyağıyla taçlandırılan klasik bir çorba. Soğuk akşamlarda ilk akla gelen.</p>
-          <div class="recipe-meta-row">
-            <div class="meta-item"><p>hazırlık</p><p>10 dk</p></div>
-            <div class="meta-item"><p>pişirme</p><p>25 dk</p></div>
-            <div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div>
-          </div>
-          <div class="detail-cols">
-            <div class="ingredients">
-              <h4 class="detail-title">malzemeler</h4>
-              <ul>
-                <li><span>yoğurt</span><span>2.5 su bardağı</span></li>
-                <li><span>pirinç</span><span>3 yemek kaşığı</span></li>
-                <li><span>un</span><span>1.5 yemek kaşığı</span></li>
-                <li><span>yumurta</span><span>1 adet</span></li>
-                <li><span>su</span><span>5 su bardağı</span></li>
-                <li><span>tereyağı</span><span>2 yemek kaşığı</span></li>
-                <li><span>kuru nane</span><span>1 yemek kaşığı</span></li>
-                <li><span>tuz</span><span>damak tadına göre</span></li>
-              </ul>
-            </div>
-            <div class="steps">
-              <h4 class="detail-title">yapılışı</h4>
-              <div class="step"><div class="step-num">1</div><div class="step-text"><p>Pirinci yıkayıp bir tencerede <strong>3 su bardağı su</strong> ile yumuşayana kadar 15 dakika haşlayın.</p></div></div>
-              <div class="step"><div class="step-num">2</div><div class="step-text"><p>Ayrı bir kapta <strong>yoğurt, un ve yumurtayı</strong> telle pürüzsüz olana kadar çırpın. Bu karışım çorbanın kesilmesini önlüyor.</p></div></div>
-              <div class="step"><div class="step-num">3</div><div class="step-text"><p>Yoğurt karışımına haşlanmış pirincin suyundan birkaç kaşık ekleyip karıştırın, böylece karışım ısınır ve tencereye eklenince kesilme riski azalır.</p></div></div>
-              <div class="step"><div class="step-num">4</div><div class="step-text"><p>Yoğurt karışımını pirinçli tencereye yavaşça, <strong>sürekli karıştırarak</strong> ekleyin. Kalan suyu da ilave edin.</p></div></div>
-              <div class="step"><div class="step-num">5</div><div class="step-text"><p>Çorbayı kısık-orta ateşte, ara vermeden karıştırarak kaynamaya getirin. Kaynadıktan sonra tuzu ekleyip 5 dakika daha pişirin.</p></div></div>
-              <div class="step"><div class="step-num">6</div><div class="step-text"><p>Küçük bir tavada <strong>tereyağını</strong> eritin, kuru naneyi ekleyip birkaç saniye kavurun. Çorbayı kâselere paylaştırıp üzerine naneli tereyağını gezdirin.</p></div></div>
-              <div class="recipe-note"><strong>not</strong>Çorbayı kaynattıktan sonra asla kapağını kapatmayın ve karıştırmayı bırakmayın — yoğurt sıcakla buluştuğunda hızlıca kesilebilir, sürekli hareket bunu önler.</div>
-            </div>
+      <div class="recipe-detail" id="d4"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Naneli tereyağıyla taçlandırılan, soğuk akşamların vazgeçilmez çorbası.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>yoğurt</span><span>2.5 su bardağı</span></li><li><span>pirinç</span><span>3 yemek kaşığı</span></li><li><span>un</span><span>1.5 yemek kaşığı</span></li><li><span>yumurta</span><span>1 adet</span></li><li><span>su</span><span>5 su bardağı</span></li><li><span>tereyağı</span><span>2 yemek kaşığı</span></li><li><span>kuru nane</span><span>1 yemek kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Pirinci 3 bardak suda yumuşayana kadar haşlayın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yoğurt, un ve yumurtayı çırpın. Pirinç suyundan ekleyip ısıtın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Karışımı sürekli karıştırarak tencereye ekleyin, kaynamaya bırakın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Tereyağında naneyi kavurup üzerine gezdirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Hiç karıştırmayı bırakmayın, yoğurt kesilebilir.</div>
           </div>
         </div>
-      </div>
+      </div></div>
     </div>
 
-    <div class="recipe-item">
-      <button class="recipe-row" data-target="d-patlican">
+    <!-- 5 -->
+    <div class="recipe-item" data-category="meze">
+      <button class="recipe-row" data-target="d5">
         <div class="thumb">🍆</div>
-        <div class="recipe-info">
-          <h3>Közlenmiş patlıcanlı yoğurt</h3>
-          <p>Köz kokusu en önemli malzeme</p>
-          <span class="tag">meze</span>
-        </div>
-        <div class="meta">
-          20 dk · 2 kişilik
-          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
+        <div class="recipe-info"><h3>Közlenmiş patlıcanlı yoğurt</h3><p>Köz kokusu en önemli malzeme</p><span class="tag">meze</span></div>
+        <div class="meta">20 dk · 2 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
       </button>
-      <div class="recipe-detail" id="d-patlican">
-        <div class="recipe-detail-inner">
-          <p class="recipe-lede">Patlıcanı ocakta veya közde gerçekten yakmak, bu mezenin tüm sırrı. Duman kokusu olmadan olmuyor — fırın bu konuda biraz eksik kalır ama idare eder.</p>
-          <div class="recipe-meta-row">
-            <div class="meta-item"><p>hazırlık</p><p>10 dk</p></div>
-            <div class="meta-item"><p>közleme</p><p>10 dk</p></div>
-            <div class="meta-item"><p>porsiyon</p><p>2 kişilik</p></div>
-          </div>
-          <div class="detail-cols">
-            <div class="ingredients">
-              <h4 class="detail-title">malzemeler</h4>
-              <ul>
-                <li><span>patlıcan</span><span>3 adet</span></li>
-                <li><span>süzme yoğurt</span><span>1.5 su bardağı</span></li>
-                <li><span>sarımsak</span><span>1 diş</span></li>
-                <li><span>zeytinyağı</span><span>2 yemek kaşığı</span></li>
-                <li><span>limon suyu</span><span>1 yemek kaşığı</span></li>
-                <li><span>tuz</span><span>damak tadına göre</span></li>
-                <li><span>pul biber</span><span>üzeri için</span></li>
-              </ul>
-            </div>
-            <div class="steps">
-              <h4 class="detail-title">yapılışı</h4>
-              <div class="step"><div class="step-num">1</div><div class="step-text"><p>Patlıcanları ocak gözünde ya da mangalda kabukları tamamen kararıp içleri yumuşayana kadar her yüzünü çevirerek <strong>közleyin</strong>, yaklaşık 8-10 dakika sürer.</p></div></div>
-              <div class="step"><div class="step-num">2</div><div class="step-text"><p>Sıcakken bir kaba alıp üzerini örtün, 10 dakika dinlendirin — bu, kabuğun kolay soyulmasını sağlıyor.</p></div></div>
-              <div class="step"><div class="step-num">3</div><div class="step-text"><p>Kabuklarını soyup içini kabaca doğrayın, fazla suyunu süzmek için bir süzgeçte 5 dakika bekletin.</p></div></div>
-              <div class="step"><div class="step-num">4</div><div class="step-text"><p>Sarımsağı ezip <strong>yoğurtla</strong> karıştırın, tuz ekleyin. Közlenmiş patlıcanı ekleyip kabaca karıştırın — tamamen pürüze gerek yok, doku kalsın.</p></div></div>
-              <div class="step"><div class="step-num">5</div><div class="step-text"><p>Servis tabağına alıp üzerine <strong>zeytinyağı, limon suyu ve pul biber</strong> gezdirin. Ilık ekmekle servis edin.</p></div></div>
-              <div class="recipe-note"><strong>not</strong>Patlıcanı közlerken acele etmeyin — kabuk gerçekten kararmadan içi tam yumuşamaz ve duman tadı oluşmaz. Fırında közlemek isterseniz 220°C'de ızgara modunda, sık çevirerek deneyin.</div>
-            </div>
+      <div class="recipe-detail" id="d5"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Patlıcanı ocakta gerçekten yakmak bu mezenin tüm sırrı. Duman kokusu şart.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>közleme</p><p>10 dk</p></div><div class="meta-item"><p>porsiyon</p><p>2 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>patlıcan</span><span>3 adet</span></li><li><span>süzme yoğurt</span><span>1.5 su bardağı</span></li><li><span>sarımsak</span><span>1 diş</span></li><li><span>zeytinyağı</span><span>2 yemek kaşığı</span></li><li><span>limon suyu</span><span>1 yemek kaşığı</span></li><li><span>pul biber</span><span>üzeri için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Patlıcanları ocak gözünde kabukları kararana kadar közleyin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Örtüp 10 dakika dinlendirin, soyun, suyunu süzün.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Sarımsaklı yoğurtla karıştırın, üzerine zeytinyağı ve pul biber gezdirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Doku kalsın diye tamamen püre yapmayın.</div>
           </div>
         </div>
-      </div>
+      </div></div>
+    </div>
+
+    <!-- 6 -->
+    <div class="recipe-item" data-category="et">
+      <button class="recipe-row" data-target="d6">
+        <div class="thumb">🥩</div>
+        <div class="recipe-info"><h3>Sarımsaklı tereyağlı tavuk but</h3><p>Fırında, sulu ve lezzetli</p><span class="tag">et yemekleri</span></div>
+        <div class="meta">50 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d6"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Derisi çıtır, içi sulu bir fırın tavuğu. Sarımsak ve tereyağı kombinasyonu hiç yanıltmaz.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>15 dk</p></div><div class="meta-item"><p>pişirme</p><p>40 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>tavuk but</span><span>4 adet</span></li><li><span>tereyağı</span><span>3 yemek kaşığı</span></li><li><span>sarımsak</span><span>5 diş</span></li><li><span>limon</span><span>1 adet</span></li><li><span>kekik</span><span>1 çay kaşığı</span></li><li><span>pul biber</span><span>1 çay kaşığı</span></li><li><span>tuz, karabiber</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Erimiş tereyağı, ezilmiş sarımsak, kekik, pul biber, tuz ve limonu karıştırın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tavuk butları bu karışımla iyice ovun, en az 30 dakika marine edin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p><strong>200°C</strong> fırında derisi üste olacak şekilde 35-40 dakika pişirin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Son 5 dakika ızgara moduna alıp deriyi çıtırlatın.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Marine süresi uzadıkça lezzet artar, gece bırakırsanız çok daha iyi olur.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 7 -->
+    <div class="recipe-item" data-category="et">
+      <button class="recipe-row" data-target="d7">
+        <div class="thumb">🫕</div>
+        <div class="recipe-info"><h3>Ev yapımı köfte</h3><p>Izgarada veya tavada</p><span class="tag">et yemekleri</span></div>
+        <div class="meta">30 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d7"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Bayat ekmekli, soğanlı klasik köfte. Dinlendirmek önemli, acele etmemek daha da önemli.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>15 dk</p></div><div class="meta-item"><p>bekleme</p><p>30 dk</p></div><div class="meta-item"><p>pişirme</p><p>15 dk</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>kıyma (%20 yağlı)</span><span>500 g</span></li><li><span>kuru soğan</span><span>1 büyük</span></li><li><span>bayat ekmek içi</span><span>2 dilim</span></li><li><span>sarımsak</span><span>2 diş</span></li><li><span>yumurta</span><span>1 adet</span></li><li><span>kimyon</span><span>1 çay kaşığı</span></li><li><span>karabiber</span><span>1 çay kaşığı</span></li><li><span>tuz</span><span>1.5 çay kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Ekmek içini suda ıslatıp sıkın. Soğanı rendeleyin, suyunu sıkın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tüm malzemeleri yoğurun, plastik filme sarıp <strong>30 dakika</strong> buzdolabında dinlendirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Ceviz büyüklüğünde parçalar koparıp ovalayın, hafif basık şekil verin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Yağsız ızgara ya da tavada her iki tarafı 4-5 dakika pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Yağlı kıyma kullanmak köftenin sulu kalmasını sağlar.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 8 -->
+    <div class="recipe-item" data-category="et">
+      <button class="recipe-row" data-target="d8">
+        <div class="thumb">🍖</div>
+        <div class="recipe-info"><h3>Sebzeli kuzu güveç</h3><p>Yavaş pişirmenin sabrı</p><span class="tag">et yemekleri</span></div>
+        <div class="meta">2 sa · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d8"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Fırında yavaş yavaş pişen, sebzelerin etlerin suyuna bulandığı bir güveç. Sabır şart ama değer.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>20 dk</p></div><div class="meta-item"><p>pişirme</p><p>1.5 sa</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>kuzu but (küp)</span><span>600 g</span></li><li><span>patates</span><span>3 adet</span></li><li><span>havuç</span><span>2 adet</span></li><li><span>soğan</span><span>2 adet</span></li><li><span>domates</span><span>3 adet</span></li><li><span>sarımsak</span><span>4 diş</span></li><li><span>zeytinyağı</span><span>4 yemek kaşığı</span></li><li><span>kekik, biberiye</span><span>birer dal</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Eti zeytinyağında her tarafı kızarana kadar mühürleyin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tüm sebzeleri iri doğrayın, güvece koyun, eti üstüne yerleştirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Domatesleri rendeleyin, sarımsak ve baharatlarla karıştırıp üzerine dökün.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Kapağını kapatıp <strong>160°C</strong>'de 1.5-2 saat pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Düşük ısı ve uzun süre bu yemeğin sırrı — acele etmeyin.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 9 -->
+    <div class="recipe-item" data-category="tatli">
+      <button class="recipe-row" data-target="d9">
+        <div class="thumb">🍮</div>
+        <div class="recipe-info"><h3>Kazandibi</h3><p>Dibinin hafif yanığı şart</p><span class="tag">tatlı</span></div>
+        <div class="meta">45 dk · 6 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d9"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Dibinin hafif yanık aroması kazandibini kazandibi yapan şey. Fazla korkup altını kapamayın.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>soğutma</p><p>2 sa</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>süt</span><span>1 litre</span></li><li><span>şeker</span><span>150 g</span></li><li><span>pirinç unu</span><span>60 g</span></li><li><span>nişasta</span><span>40 g</span></li><li><span>un</span><span>20 g</span></li><li><span>gül suyu</span><span>1 yemek kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Pirinç unu, nişasta ve unu biraz soğuk sütle eritin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Kalan sütü şekerle kaynatın, un karışımını ekleyip sürekli karıştırarak koyulaştırın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Geniş, yüzeysel bir tavaya alın, orta-yüksek ateşte alt kısmı kızarana kadar bırakın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Soğuyunca buzdolabına alın, 2 saat bekletin, ters çevirip dilimleyin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Alt yanma sesini duyunca paniklemeyim, o ses istediğiniz şey.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="recipe-item" data-category="tatli">
+      <button class="recipe-row" data-target="d10">
+        <div class="thumb">🍰</div>
+        <div class="recipe-info"><h3>Fırında sütlaç</h3><p>Fırın kreması olmayan sütlaç olmaz</p><span class="tag">tatlı</span></div>
+        <div class="meta">50 dk · 6 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d10"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Üstündeki o hafif karamelize krem tabakası olmadan sütlaç eksik kalır. Fırın adımı çıkarılmaz.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>40 dk</p></div><div class="meta-item"><p>porsiyon</p><p>6 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>süt</span><span>1.5 litre</span></li><li><span>pirinç</span><span>100 g</span></li><li><span>şeker</span><span>150 g</span></li><li><span>nişasta</span><span>3 yemek kaşığı</span></li><li><span>vanilya</span><span>1 paket</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Pirinci az suda haşlayın, suyunu süzün.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Sütü şekerle ısıtın, pişmiş pirinci ekleyin, yumuşayana kadar pişirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Soğuk sütle eritilmiş nişastayı ekleyip koyulaşana kadar karıştırın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Kaselere bölüp fırının ızgara modunda üzeri kızarana kadar pişirin, soğutun.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Soğutmadan servis etmeyin, ılık sütlaç dağılır.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 11 -->
+    <div class="recipe-item" data-category="tatli">
+      <button class="recipe-row" data-target="d11">
+        <div class="thumb">🍯</div>
+        <div class="recipe-info"><h3>Cevizli baklava</h3><p>Yufkasını kendin aç, farkını hissedersin</p><span class="tag">tatlı</span></div>
+        <div class="meta">1.5 sa · 10 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d11"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Hazır yufkayla da yapılabilir ama bir kez kendin açarsan geri dönemezsin. Şerbeti soğuk, baklava sıcak olmalı.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>45 dk</p></div><div class="meta-item"><p>pişirme</p><p>40 dk</p></div><div class="meta-item"><p>porsiyon</p><p>10 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>hazır yufka</span><span>500 g</span></li><li><span>ceviz içi</span><span>300 g</span></li><li><span>tereyağı</span><span>200 g</span></li><li><span>şeker (şerbet)</span><span>2 su bardağı</span></li><li><span>su (şerbet)</span><span>1.5 su bardağı</span></li><li><span>limon suyu</span><span>1 yemek kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Şerbeti kaynatın, limon ekleyin, soğutun.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tepsiyi yağlayın, her yufkayı eriyik tereyağıyla fırçalayarak yerleştirin. Araya ceviz serpin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Dilimleyin, üzerine kalan tereyağını dökün, <strong>175°C</strong>'de altın rengi olana kadar pişirin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Fırından çıkar çıkmaz soğuk şerbeti dökün, 1 saat bekleyin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Sıcak baklava + soğuk şerbet = çıtır baklava. İkisi de sıcak olursa ıslanır.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 12 -->
+    <div class="recipe-item" data-category="kahvalti">
+      <button class="recipe-row" data-target="d12">
+        <div class="thumb">🥚</div>
+        <div class="recipe-info"><h3>Menemen</h3><p>Kavgasız, sade, gerçek</p><span class="tag">kahvaltılık</span></div>
+        <div class="meta">20 dk · 2 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d12"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Soğanlı mı soğansız mı tartışmasına girmiyorum. Ben soğansız yapıyorum, siz bilirsiniz.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>5 dk</p></div><div class="meta-item"><p>pişirme</p><p>15 dk</p></div><div class="meta-item"><p>porsiyon</p><p>2 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>domates</span><span>4 adet</span></li><li><span>yeşil biber</span><span>2 adet</span></li><li><span>yumurta</span><span>3 adet</span></li><li><span>zeytinyağı</span><span>2 yemek kaşığı</span></li><li><span>pul biber</span><span>1 çay kaşığı</span></li><li><span>tuz</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Biberi küçük küpler halinde zeytinyağında kavurun.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Rendelenmiş domatesi ekleyin, suyu çekilip koyulaşana kadar pişirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Yumurtaları kırın, karıştırarak ya da karıştırmadan istediğiniz kıvama getirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Domates suyunu iyice çekin, menemen sulu olmaz.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 13 -->
+    <div class="recipe-item" data-category="kahvalti">
+      <button class="recipe-row" data-target="d13">
+        <div class="thumb">🧀</div>
+        <div class="recipe-info"><h3>Peynirli börek (tava)</h3><p>Fırın açmadan, 20 dakikada</p><span class="tag">kahvaltılık</span></div>
+        <div class="meta">20 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d13"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Sabah fırın açmadan tava böreği en kısa yol. Yufka, peynir, yumurta — hepsi bu.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>10 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>yufka</span><span>3 adet</span></li><li><span>beyaz peynir</span><span>200 g</span></li><li><span>yumurta</span><span>2 adet</span></li><li><span>süt</span><span>½ su bardağı</span></li><li><span>maydanoz</span><span>bir tutam</span></li><li><span>sıvı yağ</span><span>tavayı yağlamak için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Peyniri ufalayın, maydanozla karıştırın. Yumurta ve sütü çırpın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yufkayı yağlanmış tavaya serin, peyniri koyun, yufkayla sarın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Üzerine yumurtalı sütü dökün, kısık ateşte her iki tarafı kızarana kadar pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Kapağı kapatmak altını çabuk pişirir, üstü kızarmaz dikkat edin.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 14 -->
+    <div class="recipe-item" data-category="kahvalti">
+      <button class="recipe-row" data-target="d14">
+        <div class="thumb">🫙</div>
+        <div class="recipe-info"><h3>Ev yapımı reçel (çilek)</h3><p>Şeker oranını kendin ayarlarsın</p><span class="tag">kahvaltılık</span></div>
+        <div class="meta">40 dk · 3 kavonoz <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d14"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Hazır reçellere kıyasla çok daha az şekerli, meyveli bir reçel. Bir kez yapınca hazır almak zor geliyor.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>30 dk</p></div><div class="meta-item"><p>porsiyon</p><p>3 kavonoz</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>çilek</span><span>1 kg</span></li><li><span>şeker</span><span>500 g</span></li><li><span>limon suyu</span><span>2 yemek kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Çilekleri yıkayıp ikiye bölün, şekerle karıştırıp 1 saat bekletin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Kısık ateşte, ara sıra karıştırarak 25-30 dakika pişirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Limon suyunu ekleyin, köpükleri alın, sıcak kavanozlara doldurun.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Kıvam testi: bir damla soğuk tabağa düşürün, akmıyorsa hazır.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 15 -->
+    <div class="recipe-item" data-category="corba">
+      <button class="recipe-row" data-target="d15">
+        <div class="thumb">🍲</div>
+        <div class="recipe-info"><h3>Mercimek çorbası</h3><p>Klasik, yanılmaz, her zaman doğru</p><span class="tag">çorba</span></div>
+        <div class="meta">30 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d15"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Tereyağlı pul biberli tavası olmadan masaya konmaz. O adımı atlamamak şart.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>5 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>kırmızı mercimek</span><span>1.5 su bardağı</span></li><li><span>soğan</span><span>1 adet</span></li><li><span>havuç</span><span>1 adet</span></li><li><span>patates</span><span>1 adet</span></li><li><span>zeytinyağı</span><span>3 yemek kaşığı</span></li><li><span>tuz, kimyon</span><span>damak tadına göre</span></li><li><span>tereyağı + pul biber</span><span>servis için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Soğan ve havucu zeytinyağında kavurun.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yıkanmış mercimek, patates ve suyu ekleyin, yumuşayana kadar pişirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Blenderdan geçirin, tuz ve kimyonla tatlandırın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Tereyağında pul biberi kavurup üzerine gezdirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Limon sıkmak çorbanın tadını açar, deneyin.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 16 -->
+    <div class="recipe-item" data-category="zeytinyagli">
+      <button class="recipe-row" data-target="d16">
+        <div class="thumb">🫒</div>
+        <div class="recipe-info"><h3>Zeytinyağlı enginar</h3><p>Mevsiminde yenilecek</p><span class="tag">zeytinyağlı</span></div>
+        <div class="meta">50 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d16"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Enginar mevsimi kısadır, kaçırmamak lazım. Limonlu suda bekleterek kararmasını önleyebilirsiniz.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>20 dk</p></div><div class="meta-item"><p>pişirme</p><p>30 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>enginar</span><span>4 adet</span></li><li><span>havuç</span><span>2 adet</span></li><li><span>bezelye</span><span>1 su bardağı</span></li><li><span>soğan</span><span>1 adet</span></li><li><span>zeytinyağı</span><span>6 yemek kaşığı</span></li><li><span>limon</span><span>1 adet</span></li><li><span>şeker</span><span>1 tatlı kaşığı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Enginarları temizleyip limonlu suda bekletin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğanı kavurun, havuç ve bezelyeyi ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Enginarları tencereye yerleştirin, zeytinyağı, limon, şeker ve tuz ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Az su ekleyip kapağını kapatın, kısık ateşte 25-30 dakika pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Soğuk servis edin, ılık enginar olmaz.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 17 -->
+    <div class="recipe-item" data-category="hamur">
+      <button class="recipe-row" data-target="d17">
+        <div class="thumb">🥐</div>
+        <div class="recipe-info"><h3>Ev açması poğaça</h3><p>Fırından çıkınca bekleyemezsiniz</p><span class="tag">hamur işi</span></div>
+        <div class="meta">1 sa · 12 adet <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d17"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Yumuşacık bir poğaça için hamurun yeterince mayalanması şart. Acele etmeyin, hamur sizi ödüllendirir.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>20 dk</p></div><div class="meta-item"><p>mayalanma</p><p>45 dk</p></div><div class="meta-item"><p>pişirme</p><p>20 dk</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>un</span><span>4 su bardağı</span></li><li><span>ılık süt</span><span>1 su bardağı</span></li><li><span>ılık su</span><span>½ su bardağı</span></li><li><span>sıvı yağ</span><span>½ su bardağı</span></li><li><span>yumurta</span><span>1 adet</span></li><li><span>kuru maya</span><span>1 paket</span></li><li><span>tuz, şeker</span><span>1'er çay kaşığı</span></li><li><span>beyaz peynir, maydanoz</span><span>iç harcı için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Maya, şeker ve ılık suyu karıştırıp 10 dakika bekletin, köpürsün.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tüm malzemeleri ekleyip yumuşak bir hamur yoğurun, 45 dakika mayalandırın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Hamuru beze beze ayırın, yuvarlayın, içine harç koyup kapatın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Üzerini yumurtayla fırçalayın, susam serpin, <strong>190°C</strong>'de 18-20 dakika pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Fırından çıkınca üzerini temiz bir bezle örtün, yumuşak kalır.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 18 -->
+    <div class="recipe-item" data-category="meze">
+      <button class="recipe-row" data-target="d18">
+        <div class="thumb">🥗</div>
+        <div class="recipe-info"><h3>Tahin soslu humus</h3><p>Blender ve 5 dakika yeter</p><span class="tag">meze</span></div>
+        <div class="meta">10 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d18"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Hazır humusla kıyası olmaz. Konserve nohutla da olur ama haşlanmışıyla daha kremsi çıkar.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>haşlanmış nohut</span><span>400 g</span></li><li><span>tahin</span><span>3 yemek kaşığı</span></li><li><span>sarımsak</span><span>1 diş</span></li><li><span>limon suyu</span><span>2 yemek kaşığı</span></li><li><span>zeytinyağı</span><span>2 yemek kaşığı</span></li><li><span>tuz, kimyon</span><span>damak tadına göre</span></li><li><span>pul biber</span><span>servis için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Nohutların kabuklarını çıkarırsanız daha kremsi olur (isteğe bağlı).</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Tüm malzemeleri blendere koyun, pürüzsüz olana kadar çekin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Kıvamı ayarlamak için az nohut suyu ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Servis tabağına alın, zeytinyağı ve pul biber gezdirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Soğuk servis edin, buzdolabında 3 gün dayanır.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 19 -->
+    <div class="recipe-item" data-category="et">
+      <button class="recipe-row" data-target="d19">
+        <div class="thumb">🍗</div>
+        <div class="recipe-info"><h3>Tavuk sote</h3><p>20 dakikada hafif bir akşam yemeği</p><span class="tag">et yemekleri</span></div>
+        <div class="meta">25 dk · 3 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d19"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Hızlı, doyurucu ve sağlıklı. Yanına pirinç veya bulgur pilavı yakışıyor.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>15 dk</p></div><div class="meta-item"><p>porsiyon</p><p>3 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>tavuk göğsü</span><span>400 g</span></li><li><span>biber (karışık)</span><span>2 adet</span></li><li><span>soğan</span><span>1 adet</span></li><li><span>domates</span><span>2 adet</span></li><li><span>salça</span><span>1 yemek kaşığı</span></li><li><span>zeytinyağı</span><span>3 yemek kaşığı</span></li><li><span>tuz, pul biber, kekik</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Tavuğu şeritler halinde kesin, zeytinyağında kızarana kadar kavurun, kenara alın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Soğan ve biberleri kavurun, salçayı ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Domatesleri ekleyin, 5 dakika pişirin, tavuğu geri koyun.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Baharatları ekleyip 5 dakika daha pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Tavuğu fazla pişirirseniz sertleşir, dikkat edin.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 20 -->
+    <div class="recipe-item" data-category="tatli">
+      <button class="recipe-row" data-target="d20">
+        <div class="thumb">🍪</div>
+        <div class="recipe-info"><h3>Yulaflı kurabiye</h3><p>Tereyağlı, muzlu, fırında 12 dakika</p><span class="tag">tatlı</span></div>
+        <div class="meta">20 dk · 15 adet <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d20"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Çok az malzemeyle yapılan, yumuşak ve çikolatalı bir kurabiye. Olgun muz kullanmak şeker ihtiyacını azaltır.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>12 dk</p></div><div class="meta-item"><p>porsiyon</p><p>15 adet</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>yulaf ezmesi</span><span>2 su bardağı</span></li><li><span>olgun muz</span><span>2 adet</span></li><li><span>tereyağı</span><span>60 g</span></li><li><span>kahverengi şeker</span><span>3 yemek kaşığı</span></li><li><span>damla çikolata</span><span>50 g</span></li><li><span>tuz</span><span>bir tutam</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Muzları ezin, erimiş tereyağı ve şekerle karıştırın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yulaf, tuz ve çikolatayı ekleyin, karıştırın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Yağlı kağıt serili tepsiye kaşıkla yerleştirip yassılaştırın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p><strong>180°C</strong>'de 10-12 dakika pişirin, soğuyunca sertleşecek.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Fırından çıkınca yumuşak görünür, soğumadan almayın.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 21 -->
+    <div class="recipe-item" data-category="corba">
+      <button class="recipe-row" data-target="d21">
+        <div class="thumb">🥕</div>
+        <div class="recipe-info"><h3>Kremalı havuç çorbası</h3><p>Zencefilli, sıcacık</p><span class="tag">çorba</span></div>
+        <div class="meta">30 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d21"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Zencefil ve havucun buluşması hem sağlıklı hem de sıcak tutan bir çorba.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>10 dk</p></div><div class="meta-item"><p>pişirme</p><p>20 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>havuç</span><span>500 g</span></li><li><span>soğan</span><span>1 adet</span></li><li><span>sarımsak</span><span>2 diş</span></li><li><span>taze zencefil</span><span>1 cm</span></li><li><span>hindistan cevizi sütü</span><span>200 ml</span></li><li><span>zeytinyağı</span><span>2 yemek kaşığı</span></li><li><span>tuz, karabiber</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Soğan, sarımsak ve zencefili zeytinyağında kavurun.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Havuçları ekleyin, üzerini geçecek kadar su koyun, yumuşayana kadar pişirin.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Blenderdan geçirin, hindistan cevizi sütünü ekleyin, ısıtın.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Üzerine birkaç damla limon sıkmak tadını açar.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 22 -->
+    <div class="recipe-item" data-category="kahvalti">
+      <button class="recipe-row" data-target="d22">
+        <div class="thumb">🥞</div>
+        <div class="recipe-info"><h3>Yumuşak krep</h3><p>İnce, hafif, her şeyle uyumlu</p><span class="tag">kahvaltılık</span></div>
+        <div class="meta">20 dk · 8 adet <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d22"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Tatlı da tuzlu da olur. Hamurun dinlenmesi krepin daha ince ve elastik çıkmasını sağlar.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>5 dk + bekleme</p></div><div class="meta-item"><p>pişirme</p><p>15 dk</p></div><div class="meta-item"><p>porsiyon</p><p>8 adet</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>un</span><span>1 su bardağı</span></li><li><span>süt</span><span>1.5 su bardağı</span></li><li><span>yumurta</span><span>2 adet</span></li><li><span>tereyağı</span><span>1 yemek kaşığı</span></li><li><span>tuz</span><span>bir tutam</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Tüm malzemeleri çırpın, pürüzsüz bir hamur yapın. 20 dakika dinlendirin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yağlanmış tavayı ısıtın, kepçe dolusu hamuru döküp hızlıca yayın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Kenarları kalkınca çevirin, 30 saniye daha pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>İlk krep genelde tutmaz, onu şefin payı sayın.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 23 -->
+    <div class="recipe-item" data-category="mevsimlik">
+      <button class="recipe-row" data-target="d23">
+        <div class="thumb">🌽</div>
+        <div class="recipe-info"><h3>Izgara mısır tereyağlı</h3><p>Yaz sofralarının vazgeçilmezi</p><span class="tag">mevsimlik</span></div>
+        <div class="meta">15 dk · 4 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d23"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Mangalın yanında ya da ocak üstünde yapılan, tereyağlı, tuzlu. Basit ama çok iyi.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>5 dk</p></div><div class="meta-item"><p>pişirme</p><p>10 dk</p></div><div class="meta-item"><p>porsiyon</p><p>4 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>mısır koçanı</span><span>4 adet</span></li><li><span>tereyağı</span><span>50 g</span></li><li><span>tuz</span><span>damak tadına göre</span></li><li><span>pul biber</span><span>isteğe bağlı</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Mısırları kaynar suda 5 dakika haşlayın.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Izgara ya da tavada her tarafı çevirerek kızartın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Üzerine bol tereyağı, tuz ve isteğe göre pul biber sürün.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Limon sıkarsanız tereyağıyla harika bir sos oluşur.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 24 -->
+    <div class="recipe-item" data-category="tatli">
+      <button class="recipe-row" data-target="d24">
+        <div class="thumb">🍫</div>
+        <div class="recipe-info"><h3>Islak kek</h3><p>Fırında bekleyen o ıslak doku</p><span class="tag">tatlı</span></div>
+        <div class="meta">45 dk · 8 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d24"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Klasik ıslak kek. Sıcak çikolata sosunun hemen çektiği, nemli ve yoğun bir kek.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>15 dk</p></div><div class="meta-item"><p>pişirme</p><p>25 dk</p></div><div class="meta-item"><p>porsiyon</p><p>8 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>un</span><span>1.5 su bardağı</span></li><li><span>kakao</span><span>4 yemek kaşığı</span></li><li><span>şeker</span><span>1.5 su bardağı</span></li><li><span>yumurta</span><span>3 adet</span></li><li><span>sıvı yağ</span><span>½ su bardağı</span></li><li><span>süt</span><span>½ su bardağı</span></li><li><span>kabartma tozu</span><span>1 paket</span></li><li><span>çikolata sosu</span><span>üzeri için</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Yumurta ve şekeri çırpın, yağ ve sütü ekleyin.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Un, kakao ve kabartma tozunu eleyin, karıştırın.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Yağlı kağıt serili tepsiye dökün, <strong>175°C</strong>'de 20-25 dakika pişirin.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Fırından çıkınca üzerine hemen sıcak çikolata sosu dökün.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Kürdan testi yapmayın, ıslak çıkması normal ve istenen budur.</div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 25 -->
+    <div class="recipe-item" data-category="mevsimlik">
+      <button class="recipe-row" data-target="d25">
+        <div class="thumb">🫑</div>
+        <div class="recipe-info"><h3>Dolma (zeytinyağlı biber)</h3><p>Sabrı olan kazanır</p><span class="tag">mevsimlik</span></div>
+        <div class="meta">1.5 sa · 6 kişilik <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg></div>
+      </button>
+      <div class="recipe-detail" id="d25"><div class="recipe-detail-inner">
+        <p class="recipe-lede">Zeytinyağlı dolma sabır isteyen bir yemek ama karşılığını veriyor. Soğuk servis edilmeli.</p>
+        <div class="recipe-meta-row"><div class="meta-item"><p>hazırlık</p><p>30 dk</p></div><div class="meta-item"><p>pişirme</p><p>50 dk</p></div><div class="meta-item"><p>porsiyon</p><p>6 kişilik</p></div></div>
+        <div class="detail-cols">
+          <div class="ingredients"><h4 class="detail-title">malzemeler</h4><ul><li><span>sivri biber</span><span>20 adet</span></li><li><span>pirinç</span><span>1.5 su bardağı</span></li><li><span>soğan</span><span>3 adet</span></li><li><span>zeytinyağı</span><span>½ su bardağı</span></li><li><span>domates salçası</span><span>1 yemek kaşığı</span></li><li><span>maydanoz, nane, dereotu</span><span>birer tutam</span></li><li><span>fıstık, kuş üzümü</span><span>2'şer yemek kaşığı</span></li><li><span>tuz, şeker, karabiber</span><span>damak tadına göre</span></li></ul></div>
+          <div class="steps"><h4 class="detail-title">yapılışı</h4>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><p>Soğanları ince kıyın, zeytinyağında şeffaflaşana kadar kavurun.</p></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><p>Yıkanmış pirinci, fıstığı, salçayı ve baharatları ekleyin, 5 dakika kavurun.</p></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><p>Ocaktan alıp kuş üzümü ve yeşillikleri ekleyin, soğumaya bırakın.</p></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><p>Biberlerin içlerini temizleyin, harcı doldurarak tencereye dizin.</p></div></div>
+            <div class="step"><div class="step-num">5</div><div class="step-text"><p>Üzerine zeytinyağı ve limon suyu gezdirin, az su ekleyin, kısık ateşte 45-50 dakika pişirin.</p></div></div>
+            <div class="recipe-note"><strong>not</strong>Soğuk servis edin, bir gün önceden yapılmış dolma daha lezzetli olur.</div>
+          </div>
+        </div>
+      </div></div>
     </div>
 
   </div>
@@ -697,19 +1033,43 @@
 </footer>
 
 <script>
+  // Akordeon
   document.querySelectorAll('.recipe-row').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var item = btn.closest('.recipe-item');
       var detail = document.getElementById(btn.dataset.target);
       var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.recipe-item.open').forEach(function(openItem) {
-        openItem.classList.remove('open');
-        openItem.querySelector('.recipe-detail').classList.remove('open');
+      document.querySelectorAll('.recipe-item.open').forEach(function(o) {
+        o.classList.remove('open');
+        o.querySelector('.recipe-detail').classList.remove('open');
       });
       if (!isOpen) {
         item.classList.add('open');
         detail.classList.add('open');
       }
+    });
+  });
+
+  // Filtre
+  document.querySelectorAll('.filter-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      var items = document.querySelectorAll('.recipe-item');
+      var count = 0;
+      items.forEach(function(item) {
+        if (filter === 'hepsi' || item.dataset.category === filter) {
+          item.classList.remove('hidden');
+          count++;
+        } else {
+          item.classList.add('hidden');
+          item.classList.remove('open');
+          var detail = item.querySelector('.recipe-detail');
+          if (detail) detail.classList.remove('open');
+        }
+      });
+      document.getElementById('tarif-sayisi').textContent = count + ' tarif';
     });
   });
 </script>
